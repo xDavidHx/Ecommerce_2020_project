@@ -71,4 +71,28 @@ To conclude this Leg our our Analysis:<br>
 
 
 
-**This Project is a work in progress. Next Sprint will include an income Analysis.**
+**This Project is a work in progress. Next Sprint will include a break down by region using the following Code, and an income Analysis as well on another dashboard.**
+
+```
+SELECT 
+  Extract(YEAR FROM Order_date) AS order_year,
+  Extract(MONTH FROM Order_date) AS order_month,
+  State, 
+  COUNT(*) AS order_count,
+  SUM(COUNT(*))  OVER () AS order_count2
+  
+
+  FROM dehproject24.US_Ecommerce_Data_2020.US_Ecommerce_Data_2024
+
+WHERE State IN ("Connectict", 'Massachussetts' , "New Hampshire" , "Rhode Island", "Vermont" , "New Jersey" , "Delaware", "Maryland" , "New York" ,"Pennsylvannia") 
+
+  GROUP BY 
+    order_year, 
+    order_month,
+    State
+  ORDER BY 
+    order_year, 
+    order_month, 
+    State;
+
+```
